@@ -29,22 +29,22 @@ def generate_cold_email(company_name, job_role, user_details, scraped_content, t
     
     # Construct the prompt instructing the AI what to do
     prompt = f"""
-    You are an expert career coach and copywriter helping a student land an internship.
-    Your task is to write a highly personalized, compelling cold email to a recruiter or hiring manager at {company_name}.
+    You are an expert freelance business copywriter helping a freelancer win a project.
+    Your task is to write a highly personalized, compelling cold email to a prospective client or decision-maker at {company_name}.
     
-    Target Role: {job_role}
+    Freelance Service: {job_role}
     
     Information about the applicant (Use this to personalize the email, but keep it natural):
     {user_details}
     
-    Information about the company (scraped from their website/job posting):
+    Information about the client (scraped from their website or project brief):
     {truncated_content}
     
     Instructions:
     1. Write a professional, yet engaging subject line.
     2. The email should be of {length} length.
     3. Start by mentioning something specific about the company based on the scraped content to show genuine interest.
-    4. Connect the applicant's background/skills to what the company does or the specific role.
+    4. Connect the freelancer's background and skills to the client's business or project needs.
     5. Include a clear Call to Action (CTA) asking for a brief chat.
     6. Keep the tone {tone}.
     7. Do not include placeholders like [Your Name] if the user provided their name. Use the provided details.

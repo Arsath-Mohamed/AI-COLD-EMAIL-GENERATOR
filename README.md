@@ -1,17 +1,17 @@
 # AI Cold Email Generator
 
-A Streamlit app that scrapes a company website or job posting, uses Groq to draft a personalized cold email, and can send the reviewed email through Gmail OAuth.
+A Streamlit app that scrapes a potential client's website or project brief, uses Groq to draft a personalized freelance pitch, and can send the reviewed email through Gmail OAuth.
 
 ## How the pipeline works
 
 `app.py` is the entry point:
 
 1. `scraper.scrape_website(target_url)` fetches the URL and returns `ScrapedData` containing the final URL, visible page text, title, description, and headings.
-2. `app.py` combines that data with the applicant's details, company name, and target role.
+2. `app.py` combines that data with the freelancer's details, client or company name, and freelance service.
 3. `llm.generate_cold_email(...)` sends the combined context to Groq and returns the generated email.
 4. After the user reviews or edits the email, `gmail.send_email(...)` authenticates with Google and sends it through the Gmail API.
 
-The company name and role are explicit user inputs. Website scraping supplies real page context, but generic websites do not expose reliable structured recruiter names or job fields, so the app does not silently guess those values.
+The client name and freelance service are explicit user inputs. Website scraping supplies real page context, but generic websites do not expose reliable project requirements or client contact details, so the app does not silently guess those values.
 
 Each stage stops with a user-visible error when it fails: fetch/parse errors stop before the LLM call, Groq errors prevent an email from being displayed, and Gmail errors return a failure message instead of claiming delivery.
 
@@ -69,8 +69,8 @@ streamlit run app.py
 
 In the browser:
 
-1. Enter applicant background and skills.
-2. Enter the company name, target role, and a public company or job-posting URL.
+1. Enter freelancer background, skills, and services.
+2. Enter the client or company name, freelance service, and a public company website or project brief URL.
 3. Choose tone and length, then select **Generate Cold Email**.
 4. Review and edit the generated message.
 5. Enter the recipient and subject, then select **Send Email**.
@@ -83,5 +83,5 @@ Use a public URL that allows automated requests. Some sites block scraping, requ
 - `GROQ_API_KEY is not set`: check the `.env` filename and that Streamlit is running from this project directory.
 - `credentials.json is missing`: place the downloaded desktop OAuth JSON beside `app.py`.
 - Google `access_denied`: verify the account is an OAuth test user and that Gmail API is enabled.
-- Scraping failures: try the site's public job page or company page and confirm it loads without a login.
+- Scraping failures: try the client's public project brief or company page and confirm it loads without a login.
 - Import errors: activate `.venv` and run `pip install -r requirements.txt` again.

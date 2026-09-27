@@ -102,24 +102,24 @@ if "generated_email" not in st.session_state:
     st.session_state.generated_email = None
 
 # Main title and description
-st.title("📧 AI Cold Email Generator for Internships")
-st.markdown("Generate personalized cold emails to recruiters by scraping the company's website and using AI.")
+st.title("📧 AI Cold Email Generator for Freelancers")
+st.markdown("Generate personalized cold emails to potential clients by scraping their website and using AI.")
 
 # Create input fields for the user
 st.header("1. Your Details")
 user_details = st.text_area(
-    "Enter your background, skills, and what you are looking for (e.g., 'I am a CS student at XYZ University, skilled in Python and React. Looking for a software engineering internship.')",
+    "Enter your background, skills, and freelance services (e.g., 'I am a web developer skilled in Python and React, available for freelance projects.')",
     height=100
 )
 
 st.header("2. Target Details")
 col1, col2 = st.columns(2)
 with col1:
-    company_name = st.text_input("Company Name (e.g., Google)")
+    company_name = st.text_input("Potential Client or Company (e.g., Google)")
 with col2:
-    job_role = st.text_input("Target Role (e.g., Software Engineer Intern)")
+    job_role = st.text_input("Freelance Service (e.g., Web Developer)")
 
-target_url = st.text_input("Company Website or Job Posting URL (used to scrape context)")
+target_url = st.text_input("Client Website or Project Brief URL (used to scrape context)")
 
 st.header("3. Email Preferences")
 col_tone, col_length = st.columns(2)
@@ -180,7 +180,7 @@ if st.session_state.generated_email:
     st.markdown("Send the email directly using your Google Account.")
     
     recipient_email = st.text_input("Recipient Email Address")
-    email_subject = st.text_input("Email Subject", value=f"Internship Application - {job_role}")
+    email_subject = st.text_input("Email Subject", value=f"Freelance Project Inquiry - {job_role}")
     
     if st.button("Send Email ", type="primary"):
         if not recipient_email or not email_subject:
