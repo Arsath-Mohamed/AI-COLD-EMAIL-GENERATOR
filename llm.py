@@ -61,7 +61,7 @@ def generate_cold_email(company_name, job_role, user_details, scraped_content, t
                     "content": prompt,
                 }
             ],
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-20b",
             temperature=0.7, # A bit of creativity
         )
         
